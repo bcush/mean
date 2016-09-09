@@ -1,0 +1,22 @@
+[33m[nodemon] 1.10.2[39m
+[33m[nodemon] to restart at any time, enter `rs`[39m
+[33m[nodemon] watching: *.*[39m
+[32m[nodemon] starting `node main.js`[39m
+3
+5
+Dojo
+rocks
+Michael
+Sensei
+[ 3,
+  5,
+  'Dojo',
+  'rocks',
+  'Michael',
+  'Sensei',
+  100,
+  [ 'hello', 'world', 'JavaScript is Fun' ] ]
+0
+The minimum value is: -3
+19.666666666666668
+[32m[nodemon] clean exit - waiting for changes before restart[39m
