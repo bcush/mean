@@ -1,1 +1,0 @@
-# mean-javascript_library
