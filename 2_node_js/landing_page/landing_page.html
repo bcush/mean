@@ -2,52 +2,29 @@
 <html>
 <head>
   <title>Landing Page</title>
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.1.0.js"></script>
-  <script> $(document).ready(function() {
-      $("#ninjaid").submit(function(e){
-          e.preventDefault()
-          $.get("/ninjas", function(r) {
-              $('#ninjainfo').append(r)
-          })
+  <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+  <script>
+    $(document).ready(function() {
+      $("#first_route").click(function() {
+        $.get("/ninjas", function(data) {
+          $("#first_route").append(data)
+        })
       })
 
-          $("#ninjaform_button").click(function(){
-            $.get("/dojos/new", function(r) {
-            $('#ninjainfo').append(r)
+     $("#second_route").click(function() {
+        $.get("/dojos/new", function(data) {
+          $("#second_route").append(data)
         })
+      })
+
     })
-
-  })
-
   </script>
-<style type="text/css">
-  #dogs, #cats{
-    display:none;
-  }
-  #dogs:target{
-    display:block;
-  }
-  #cats:target{
-    display:block;
-  }
-</style>
+
 </head>
 <body>
-<a href="#dogs">DOGS</a>
-<a href="#cats">cats</a>
-<p id="cats"> cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats cats   </p>
-<p id="dogs"> dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs dogs   </p>
-<a href="#ninjaszxfdfsdf">tset</a>
-<div id="landing"><h1>This is your landing page.</h1></div>
-<div id="ninjainfo"></div>
 
-<div id="ninjaform">
-<form action='/ninja' id="ninjaid">
-  <input type='submit' value="Ninja">
-</form>
-</div>
-
-<button id="ninjaform_button">ninjaform</button>
+  <h1 id="first_route">This is your /ninjas route. Click me for some jQuery Ninja action.</h1>
+  <h1 id="second_route">This is your /dojos/new route. Click me for some jQuery Ninja forms action!!</h1>
 
 </body>
 </html>
