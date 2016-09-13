@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Survey Form</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      // this triggers the connection event in our server
+      var socket = io.connect();
+      // we'll write all the socket stuff after the above line!
+        $('#info').submit(function(e){
+          e.preventDefault();
+          data = {
+            name: $("#name_id").val(),
+            location: $("#location_id").val(),
+            language: $("#language_id").val(),
+            comment: $("#comment_id").val()
+          }
+
+          socket.emit("button_clicked", data);
+
+        //   socket.emit("button_clicked", {reason: "because I want to learn more about sockets!"});
+        // });
+
+          socket.on("server_response", function (data) {
+            console.log("The server says: " + data.response);
+            $('#content').append("Name: " + data.name + " Location: " + data.location + " Language: " + data.language + " Comment: " + data.comment + "<br>");
+          });
+
+      // $("#info").submit(function(event) {
+      //   event.preventDefault();
+      //   $.ajax({
+      //     method:'POST',
+      //     url:'/submit',
+      //     data: $(this).serialize()
+      //   }).then(function(data) {
+      //     $("#content").append(data);
+      //   })
+      })
+    });
+  </script>
+</head>
+<body>
+<div id="wrapper">
+<div id="box">
+    <form id="info" action="/submit" method="post">
+		<p>Your Name: <input type="text" name="name" id="name_id"></p>
+		<p>Dojo Location:
+		<select name="location" id="location_id">
+			<optgroup label="Western Dojos">
+				<option value="la" selected>Los Angeles</option>
+				<option name="wa">Seattle</option>
+				<option name="sj">Silicon Valley</option>
+			</optgroup>
+			<optgroup label="Eastern Dojos">
+				<option name="il">Chicago</option>
+				<option name="tx">Dallas</option>
+				<option name="dc">Washington DC</option>
+			</optgroup>
+		</select></p>
+		<p>Favorite Language:
+		<select name="language" id="language_id">
+			<option name="sql">SQL</option>
+			<option name="jav">Java</option>
+			<option name="js">JavaScript</option>
+			<option name="csh">C#</option>
+			<option name="cpp">C++</option>
+			<option name="pyt">Python</option>
+			<option name="php">PHP</option>
+			<option name="ror">Ruby on Rails</option>
+			<option name="ios">iOS/Swift</option>
+		</select></p>
+		<p>Comment (optional):</p>
+		<p><textarea name="comments" id="comment_id"></textarea></p>
+    <p><input id="button" type="submit" value="Submit"></p>
+	</form>
+</div>
+<div id="content">
+
+<!-- <button>this is a button</button> -->
+
+</div>
+</body>
+</html>

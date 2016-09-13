@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Survey Form</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script>
+    $(document).ready(function(){
+      console.log('test!');
+      $("#info").submit(function(event) {
+        event.preventDefault();
+        $.ajax({
+          method:'POST',
+          url:'/submit',
+          data: $(this).serialize()
+        }).then(function(data) {
+          $("#content").append(data);
+        })
+      })
+    });
+  </script>
+</head>
+<body>
+<div id="wrapper">
+<div id="box">
+    <form id="info" action="/submit" method="post">
+		<p>Your Name: <input type="text" name="name"></p>
+		<p>Dojo Location:
+		<select name="location">
+			<optgroup label="Western Dojos">
+				<option value="la" selected>Los Angeles</option>
+				<option name="wa">Seattle</option>
+				<option name="sj">Silicon Valley</option>
+			</optgroup>
+			<optgroup label="Eastern Dojos">
+				<option name="il">Chicago</option>
+				<option name="tx">Dallas</option>
+				<option name="dc">Washington DC</option>
+			</optgroup>
+		</select></p>
+		<p>Favorite Language:
+		<select name="language">
+			<option name="sql">SQL</option>
+			<option name="jav">Java</option>
+			<option name="js">JavaScript</option>
+			<option name="csh">C#</option>
+			<option name="cpp">C++</option>
+			<option name="pyt">Python</option>
+			<option name="php">PHP</option>
+			<option name="ror">Ruby on Rails</option>
+			<option name="ios">iOS/Swift</option>
+		</select></p>
+		<p>Comment (optional):</p>
+		<p><textarea name="comments"></textarea></p>
+    <p><input id="button" type="submit" value="Submit"></p>
+	</form>
+</div>
+<div id="content">
+
+</div>
+	<form action="/">
+	    <input type="submit" value="Go Back">
+  </form>
+</div>
+</body>
+</html>
