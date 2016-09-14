@@ -56,6 +56,16 @@ app.get('/quotes', function(req, res) {
     })
 })
 
+
+// Example:
+// db.ninjas.find({_id: ObjectId("5462a78e514e258182f4c69a")})
+// Notice: You can't just pass the string of characters, you must pass it as an ObjectId.
+app.get('/users/:id', function(req,res) {
+
+
+
+})
+
 app.post('/quotes', function(req, res) {
     console.log("POST DATA:", req.body);
 

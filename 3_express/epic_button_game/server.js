@@ -26,7 +26,7 @@ io.sockets.on('connection', function (socket) {
     console.log(socket.id);
 
     socket.on('button_clicked', function (data) {
-    console.log('Someone clicked a button!');
-    console.log(counter++);
+    counter++;
     socket.emit('server_response', counter)
-});});
+    });
+});

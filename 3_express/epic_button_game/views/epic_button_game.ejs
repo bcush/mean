@@ -11,9 +11,8 @@
           socket.emit('button_clicked', {reason: "i wanna look at the sock"});
           console.log('jquery is working');
       });
-
           socket.on("server_response", function (data) {
-            $("#count").append(data);
+            $("#count").html(data);
           });
     });
 
@@ -21,9 +20,7 @@
   </script>
 </head>
 <body>
-  <h3>The button has been pushed</h3>
-  <h1 id="count"> 0 </h1>
-  <h3> time(s)</h3>
+  <h3>The button has been pushed <span id="count"></span> time(s)</h3>
   <h5>Push button to update the count!</h5>
   <button id="epicButton">Push the epic button</button>
   <button id="resetButton">Reset count</button>
