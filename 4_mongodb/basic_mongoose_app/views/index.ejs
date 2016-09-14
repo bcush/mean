@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basic Mongoose App</title>
+</head>
+<body>
+
+<% for (var x in users) { %>
+  <h3>Name: <%= users[x].name %></h3>
+  <h4>Age: <%= users[x].age %></h4>
+  <hr>
+<% } %>
+
+<form action="/users" method="POST">
+  <label>Name:
+  <input type="text" name="name"></label>
+  <label>Age:
+  <input type="text" name="age"></label>
+  <input type="submit" name="">
+</form>
+
+</body>
+</html>
