@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mongoose Dashboard</title>
+  <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#user_edit_form").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+          method: 'POST',
+          url: '/users',
+          data: $(this).serialize()
+        }).then(function(data) {
+          console.log(data);
+        })
+      })
+    })
+  </script>
+</head>
+<body>
+  <fieldset>
+    <legend>Users</legend>
+    <ul>
+    <% for (var x in users) { %>
+      <li><a href="/users/<%= users[x].id %>"><%= users[x].firstName %> <%= users[x].lastName %></a></li>
+    <% } %>
+    </ul>
+  </fieldset>
+
+<fieldset>
+  <legend>User - Information </legend>
+    <ul>
+      <div id="user_info"></div>
+    </ul>
+</fieldset>
+
+  <fieldset>
+  <legend>User - Add</legend>
+  <form action="" id="user_edit_form" method="post">
+  <ul>
+    <li><label>Su nombre de premiere: <input type="text" name="first"></label></li>
+    <li><label>Su nombre de ... last: <input type="text" name="last"></label></li>
+    <li><label>Su language de favorito: <input type="text" name="language"></label></li>
+  </ul>
+    <input type="submit" name="">
+</fieldset>
+  
+
+
+
+</body>
+</html>
