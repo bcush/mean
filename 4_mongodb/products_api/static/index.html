@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Products API</title>
+  <script src="https://code.jquery.com/jquery-3.1.0.js" integrity="sha256-slogkvB1K3VOkzAI8QITxV3VzpOnkeNVsKvtkYLMjfk=" crossorigin="anonymous"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#product_submit').submit(function(e) {
+        e.preventDefault();
+        $.post('/products', $(this).serialize(), function(res) {
+            $('#messages').html('Product added.');
+        });
+      });
+    });
+  </script>
+</head>
+<body>
+
+<form action="/products" id="product_submit" method="post">
+  <label>Name: 
+  <input type="text" name="name"></label>
+  <label>Description: 
+  <textarea name="description"></textarea></label>
+  <label>Price: 
+  <input type="text" name="price"></label>
+  <input type="submit" name="" value="Add Product">
+</form>
+
+<br>
+
+<form action="/products" method="delete">
+  <label>Product ID: 
+  <input type="text" name="product_id"></label>
+  <input type="submit" name="" value="Delete">
+</form>
+
+<br>
+
+<form action="/products/buy" method="put">
+  <label>Product ID:
+  <input type="text" name="product_id"></label>
+  <input type="submit" value="Buy">
+</form>
+
+<div id="messages">
+</div>
+
+</body>
+</html>
