@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+<head>
+  <title>First Angular Page</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script type="text/javascript">
+    // create an angular module named app
+    var app = angular.module('app', []);
+    // create an angular controller named divController, have it include $scope dependency
+    app.controller('divController', ['$scope', function($scope){ 
+      $scope.myName = 'Brian';    // your name
+      $scope.myFavoriteLanguage = 'JavaScript';
+      $scope.myFavoriteJSLibrary = 'Angular';
+    }]);
+  </script>
+</head>
+<body>
+
+<div ng-controller="divController">
+
+<p> Hello my name is {{ myName }}, my favorite Language is {{ myFavoriteLanguage }}, because the
+{{myFavoriteJSLibrary }} library is awesome. </p>
+
+</div>
+
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+<head>
+  <title>Build a Controller</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script type="text/javascript">
+    var app = angular.module('app', []);
+    app.controller('myController', ['$scope', function($scope){
+
+
+
+      $scope.foods = [];
+      $scope.addFood = function() {
+        $scope.foods.push(scope.newFood);
+
+
+      }
+
+
+
+    }]);
+
+
+  </script>
+</head>
+<body>
+
+<div ng-controller='myController'>
+<label>Favorite Food:
+  <input type="text" ng-model="myModel"></label>
+</div>
+
+
+</body>
+</html>
