@@ -7,19 +7,12 @@
     var app = angular.module('app', []);
     app.controller('myController', ['$scope', function($scope){
 
-
-
       $scope.foods = [];
       $scope.addFood = function() {
-        $scope.foods.push(scope.newFood);
-
-
+        $scope.foods.push($scope.newFood);
+        $scope.newFood = "";
       }
-
-
-
     }]);
-
 
   </script>
 </head>
@@ -27,7 +20,19 @@
 
 <div ng-controller='myController'>
 <label>Favorite Food:
-  <input type="text" ng-model="myModel"></label>
+  <form ng-submit="addFood();"">
+    <input type="text" ng-model="newFood"></label>
+    <input type="submit" value="Add Food">
+    <div ng-if="foods">
+  </form>
+    <p> Currently Typing: {{ newFood }} </p>
+  </div>
+
+    <input type="text" placeholder="filter..." ng-model="foodFilter">
+      <div ng-repeat="food in foods | filter:foodFilter track by $index">
+        <p> {{ food }} </p>
+      </div>
+
 </div>
 
 

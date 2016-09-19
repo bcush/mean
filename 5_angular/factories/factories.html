@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Factories</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script>
+    // first, let's create our module
+    var myAppModule = angular.module('myApp', []);
+
+    // now, let's create a factory (attached to this module)
+    myAppModule.factory('studentFactory', function() {
+      // the studentFactory is nothing more than a function that returns an object
+      var students = [
+        {name: 'Mikey', age: 34},
+        {name: 'John', age: 24},
+        {name: 'Trey', age: 24}
+      ];
+
+      var factory = {};
+      // now, let's add a getStudents key to the factory object with a value of a function
+      factory.getStudents = function (callback){
+        // pass the students to a callback that will be used by whoever calls the method
+        callback(students);
+      }
+      // most important step: return the object so it can be used by the rest of the angular code
+      return factory;
+    });
+
+    // now let's create a controller (attached to this module), and inject the studentFactory in it
+    myAppModule.controller('studentsController', ['$scope', 'studentFactory', function ($scope, studentFactory) {
+      // initialize an empty array so $scope.students maintains a consistent data type
+      $scope.students = [];
+      // run the getStudent method and set $scope data in the callback
+      studentFactory.getStudents(function (data){ 
+        $scope.students = data;
+      })
+    }])
+
+</script>
+
+
+</head>
+<body>
+
+</body>
+</html>

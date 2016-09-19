@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>WOO INDEX!</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script>
+		var myApp = angular.module('productApp', []);
+		myApp.factory('productFactory', ['$http', function($http){
+			var productFactoryObject = {};
+			productFactoryObject.getAllProducts = function(callback){
+				$http({
+					method:"GET",
+					url:'/products/json'
+				}).then(function(res){
+					callback(res.data);
+				})
+			}
+			productFactoryObject.newProduct = function(product, callback){
+				$http({
+					method:"POST",
+					url:"/products",
+					data: product
+				}).then(function(res){
+					callback();
+				})
+			}
+			productFactoryObject.deleteProduct = function(product, callback){
+				$http({
+					method:"DELETE",
+					url:"/products/"+product._id
+				}).then(function(res){
+					callback();
+				})
+			}
+			productFactoryObject.buyProduct = function(product, callback){
+				$http({
+					method:"PUT",
+					url:"/products/"+product._id
+				}).then(function(res){
+					callback();
+				})
+			}
+			return productFactoryObject;
+		}]);
+		myApp.controller('productsController', ['$scope', 'productFactory', function($scope, productFactory){
+			function updateHTML(){
+				productFactory.getAllProducts(function(productsData){
+					$scope.products = productsData;
+				})
+			}
+			updateHTML();
+			$scope.createProduct = function(productInput){
+				productFactory.newProduct(productInput, updateHTML);
+			}
+
+			$scope.deleteProduct = function(productInput){
+				productFactory.deleteProduct(productInput, updateHTML);
+			}
+		}]);
+		myApp.controller('ordersController', ['$scope', 'productFactory', function($scope, productFactory){
+			function updateHTML(){
+				productFactory.getAllProducts(function(productsData){
+					$scope.products = productsData;
+				})
+			}
+			updateHTML();
+			$scope.buyProduct = function(productInput){
+				productFactory.buyProduct(productInput, updateHTML);
+			}
+		}]);
+	</script>
+</head>
+<body ng-app='productApp'>
+	<div ng-controller="productsController">
+		<form id="createProduct">
+			<label>name<input type="text" ng-model="product.name"></label>
+			<label>description<input type="text" ng-model="product.description"></label>
+			<label>price<input type="number" ng-model="product.price"></label>
+			<button ng-click="createProduct(product)">Submit Product</button>
+		</form>
+		<table id="productsTable">
+			<tr>
+				<th>name</th>
+				<th>description</th>
+				<th>price</th>
+				<th>action</th>
+			</tr>
+			<tr ng-repeat="product in products">
+				<td>{{product.name}}</td>
+				<td>{{product.description}}</td>
+				<td>{{product.price}}</td>
+				<td><form>
+						<button ng-click="deleteProduct(product)">delete</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div ng-controller="ordersController">
+		<table id="productsTable">
+			<tr>
+				<th>name</th>
+				<th>price</th>
+				<th>quantity</th>
+				<th>action</th>
+			</tr>
+			<tr ng-repeat="product in products">
+				<td>{{product.name}}</td>
+				<td>{{product.price}}</td>
+				<td>{{product.quantity}}</td>
+				<td><form>
+						<button ng-click="buyProduct(product)">product</button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

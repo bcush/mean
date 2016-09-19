@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Controlling Users</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+  <script type="text/javascript">
+    var myApp = angular.module('myApp', []);
+    myApp.controller('userController', ['$scope', function($scope) {
+      // this will be our user controller
+      $scope.users = [];
+
+    $scope.createUser = function() {
+      // add user to array
+      $scope.users.push($scope.newUser);
+      // clear the input field
+      $scope.newUser = {};
+    }
+
+    $scope.deleteUser = function(userObjectDelete) {
+      // find user in array, recreate array excluding user
+      $scope.users = $scope.users.filter( function(user) { 
+        return userObjectDelete !== user;
+      })
+    }
+    }]);
+
+  </script>
+</head>
+
+<body ng-app="myApp">
+<!-- * 1 Controller
+* Data are stored in this controller
+* When we click create user, store that data as a user object in the users
+  array, and update our table.
+* When we click delete user, remove that user object from the users array and
+  update the table. -->
+
+  <fieldset>
+    <legend>
+      Users Controller
+    </legend>
+<div ng-controller="userController">
+  <form ng-submit="createUser()">
+    <label>First Name
+      <input type="text" ng-model="newUser.firstName"></label>
+    <label>Last Name
+      <input type="text" ng-model="newUser.lastName"></label>
+    <label>Favorite Language
+      <input type="text" ng-model="newUser.faveLanguage"></label>
+    <input type="submit" name="" value="Create User">
+  </form>
+
+  <table>
+    <thead>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>Favorite Language</td>
+      <td>Actions</td>
+    </thead>
+    <tr ng-repeat="user in users">
+      <td>{{ user.firstName }}</td>
+      <td>{{ user.lastName }}</td>
+      <td>{{ user.faveLanguage }}</td>
+      <td><button ng-click="deleteUser(user)">Delete User</button></td>
+    </tr>
+  </table>
+  </fieldset>
+</div>
+</body>
+</html>
