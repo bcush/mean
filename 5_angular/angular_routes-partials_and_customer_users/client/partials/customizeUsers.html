@@ -11,7 +11,7 @@
     <input type="text" ng-model="newUser.lastName"></label>
   <label>Favorite Language
     <input type="text" ng-model="newUser.favoriteLanguage"></label>
-  <button type="submit" ng-click="create()">Create User</button>
+  <button type="submit" ng-click="create(newUser)">Create User</button>
   </form>
   <table>
     <thead>
@@ -26,7 +26,7 @@
     <td>{{ user.firstName }}</td>
     <td>{{ user.lastName }}</td>
     <td>{{ user.favoriteLanguage }}</td>
-    <td><button ng-click="deleteUser(user)">Delete User</button></td>
+    <td><button ng-click="delete($index)">Delete User</button></td>
   </tr>
 </table>
 

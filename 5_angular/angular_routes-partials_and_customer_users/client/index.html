@@ -45,8 +45,13 @@
 
       factory.create = function (user) {
         // Add user to array
-        $scope.users.push(user);
+        users.push(user);
       }
+
+      factory.delete = function ($index) {
+        // Delete user from array
+        users.splice($index, 1);
+        }
 
       // This is the most important step in a Factory - that is: return the object.
       return factory;
@@ -59,17 +64,28 @@
       usersFactory.index(function (data){
         $scope.users = data;
       })
+
+     $scope.create = function() {
+        // Push newUser to users
+        usersFactory.create($scope.newUser);
+        // Reset our form
+        $scope.newUser = {};
+      }
+
+      $scope.delete = function($index) {
+        // Remove user object from our list
+        usersFactory.delete($index);
+      }
     }]);
 
     app.controller('UserListsController', ['$scope', 'usersFactory', function($scope, usersFactory){
       // We put our UserListsController logic here
-      $scope.create = function(){
-        // Push newUser to users
-        userFactory.create($scope.newUser);
-        console.log('hello');
-        // Reset our form
-        $scope.newUser = {};
-      }
+      $scope.users = [];
+      // Run the getUsers method and set $scope data in the callback
+      usersFactory.index(function (data){
+        $scope.users = data;
+      })
+ 
     }]);
 
   </script>
