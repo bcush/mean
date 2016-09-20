@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app='app'>
+<head>
+  <title>Learning Partials</title>
+  <script type="text/javascript" src="angular/angular.js"></script>
+  <script type="text/javascript" src="angular-route/angular-route.js"></script>
+  <script type="text/javascript">
+    // Here we are injecting in the provider ngRoute
+    var app = angular.module('app', ['ngRoute'])
+    app.config(function ($routeProvider) {
+      $routeProvider
+        .when('/', {
+            templateUrl: 'partials/partial1.html'
+        })
+        .when('/partial2', {
+            templateUrl: 'partials/partial2.html'
+        })
+        .otherwise({
+          redirectTo: '/'
+        });
+    });
+
+  </script>
+</head>
+<body>
+
+<div ng-view>
+  <!-- Partials will load here! -->
+</div>
+
+<!-- this hashtag is critical to for angular to pick it up as a partial call -->
+<a href="#/">Partial1</a>
+<a href="#/partial2">Partial2</a>
+
+
+<h1>Hello World!</h1>
+</body>
+</html>

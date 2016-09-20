@@ -1,4 +1,6 @@
 var products = require('../controllers/Products.js');
+var orders = require('../controllers/Orders.js');
+
 module.exports = function(app){
 	app.post('/products', products.post);
 	app.get('/products/json', products.getAll);
