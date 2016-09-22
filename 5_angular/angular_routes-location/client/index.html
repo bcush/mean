@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Partials and Custom Users</title>
+  <script type="text/javascript" src="angular/angular.js"></script>
+  <script type="text/javascript" src="angular-route/angular-route.js"></script>
+  <script type="text/javascript">
+
+    // Here we are injecting in the ngRoute provider
+    var app = angular.module('app', ['ngRoute']);
+
+    app.config(function ($routeProvider) {
+      $routeProvider
+        .when('/', {
+          templateUrl: "partials/customizeUsers.html"
+        })
+        .when('/userlist', {
+          templateUrl: "partials/userList.html"
+        })
+        .otherwise({
+          redirectTo: '/'
+        });
+    });
+
+    app.factory('usersFactory', ['$http', function($http) {
+      // The usersFactory is nothing more than a function that returns an object
+      var factory = {};
+
+      factory.index = function (callback) {
+        // Pass the users to callback that will be used by whoever calls the method
+        $http({
+          method: "GET",
+          url: "/users/json"
+        }).then(function(res){
+          callback(res.data);
+        })
+      }
+
+      factory.create = function (user, callback) {
+        // Add user to array
+        $http({
+          method: "POST",
+          url: "/users",
+          data: user
+        }).then(function(res){
+          console.log(res);
+          console.log($location);
+          callback();
+        })
+      }
+
+      factory.delete = function (user, callback) {
+        // Delete user from array
+        $http({
+          method: "DELETE",
+          url: "/users/" + user._id
+        }).then(function(res){
+          callback();
+        })
+      }
+
+      // This is the most important step in a Factory - that is: return the object.
+      return factory;
+    }]);
+
+    app.controller('CustomizeUsersController', ['$scope', '$location', 'usersFactory', function($scope, $location, usersFactory){
+      // We put our CustomerUsersController logic here
+      $scope.users = [];
+      // Run the getUsers method and set $scope data in the callback
+      usersFactory.index(function (data){
+        $scope.users = data;
+      })
+
+      function updateHTML(){
+        usersFactory.index(function(userData){
+          $scope.users = userData;
+        })
+      }
+
+      updateHTML();
+
+     $scope.create = function() {
+        // Push newUser to users
+        usersFactory.create($scope.newUser, updateHTML);
+        // Reset our form
+        $scope.newUser = {};
+        $location.url('/userlist');
+      }
+
+      $scope.delete = function(userObj) {
+        // Remove user object from our list
+        usersFactory.delete(userObj, updateHTML);
+      }
+    }]);
+
+    app.controller('UserListsController', ['$scope', 'usersFactory', function($scope, usersFactory){
+      // We put our UserListsController logic here
+      $scope.users = [];
+      // Run the getUsers method and set $scope data in the callback
+      usersFactory.index(function (data){
+        $scope.users = data;
+      })
+ 
+    }]);
+
+  </script>
+</head>
+<body ng-app="app">
+
+<a href="#/">Customize Users</a>
+<a href="#/userlist">User List</a>
+
+<div ng-view="">
+<!-- Partials will load here -->
+
+<h1>Hello World!</h1>
+</div>
+
+
+
+</body>
+</html>

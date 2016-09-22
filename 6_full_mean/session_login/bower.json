@@ -1,0 +1,17 @@
+{
+  "name": "session_with_express",
+  "description": "",
+  "main": "app.js",
+  "authors": [
+    "Brian Cushman <cushman.brian@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/beecushman/mean",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

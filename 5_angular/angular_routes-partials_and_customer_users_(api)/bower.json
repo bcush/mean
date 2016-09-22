@@ -1,0 +1,17 @@
+{
+  "name": "angular_routes-partials_and_customer_users",
+  "homepage": "https://github.com/beecushman/mean",
+  "authors": [
+    "Brian Cushman <cushman.brian@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

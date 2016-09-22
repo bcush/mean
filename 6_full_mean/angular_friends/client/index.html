@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Awesome Friends</title>
+
+  <!-- Angular from bower_components, otherwise find the CDN -->
+  <script type="text/javascript" src="angular/angular.js"></script>
+  <script type="text/javascript" src="angular/angular-route.js"></script>
+
+  <!-- End of Bower Component -->
+  <script type="text/javascript" src="assets/app.js"></script>
+</head>
+
+<body>
+  <!-- Link to your new and edit pages here. Review Angular Partials if you've forgotten ) -->
+  <a href="#/new">New</a>
+  <a href="#/edit">Edit</a>
+
+  <!-- not so suble hint: nv-view ??? -->
+  <div ng-view="">
+
+  </div>
+
+</body>
+</html>
