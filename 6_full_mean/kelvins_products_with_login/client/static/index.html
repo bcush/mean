@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="appName">
+<head>
+	<meta charset="UTF-8">
+	<title>WOO INDEX!</title>
+	<script src="/angular/angular.min.js"></script>
+	<script src="/angular/angular-route.min.js"></script>
+
+	<script src="/app.js"></script>
+
+
+	<script src="/factories/productFactory.js"></script>
+	<script src="/factories/userFactory.js"></script>
+	
+	<script src="/controllers/ordersController.js"></script>
+	<script src="/controllers/productsController.js"></script>
+	<script src="/controllers/editProductsController.js"></script>
+	<script src="/controllers/usersController.js"></script>
+
+</head>
+<body>
+		<a href="#/catz">CATZ</a>
+		<a href="#/">Root</a>
+		<a href="#/products">products</a>
+		<a href="#/orders">orders</a>
+		<a href="#/login">Login/Reg</a>
+	<h1>This is only on my index</h1>
+	
+	<div ng-view=""></div>
+</body>
+</html>

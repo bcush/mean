@@ -1,0 +1,36 @@
+
+
+<!DOCTYPE html>
+<html lang="en" ng-app="appName">
+<head>
+	<meta charset="UTF-8">
+	<title>Discussion Board</title>
+	<script src="/angular/angular.min.js"></script>
+	<script src="/angular/angular-route.min.js"></script>
+
+	<script src="/app.js"></script>
+
+<script src="/factories/topicFactory.js"></script>
+
+<script src="/factories/userFactory.js"></script>
+	
+<!-- 	<script src="/controllers/ordersController.js"></script> -->
+	<script src="/controllers/topicsController.js"></script>
+
+ 
+<!--	<script src="/controllers/editProductsController.js"></script> -->
+	<script src="/controllers/usersController.js"></script>
+
+
+</head>
+<body>
+		<a href="#/catz">CATZ</a>
+		<a href="#/">Root</a>
+		<a href="#/dashboard">Dashboard</a>
+		<a href="#/orders">orders</a>
+		<a href="#/login">Login/Reg</a>
+
+	
+	<div ng-view=""></div>
+</body>
+</html>

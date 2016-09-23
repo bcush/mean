@@ -1,0 +1,24 @@
+<div ng-controller="productsController">
+		<h1>INDEX!</h1>
+		<form id="createProduct" ng-submit="addProduct(newProduct)">
+			<label>name<input type="text" ng-model="newProduct.name"></label>
+			<label>description<input type="text" ng-model="newProduct.description"></label>
+			<label>price<input type="number" ng-model="newProduct.price"></label>
+			<button>Submit Product</button>
+		</form>
+		<table id="productsTable">
+			<tr>
+				<th>name</th>
+				<th>description</th>
+				<th>price</th>
+				<th>action</th>
+			</tr>
+			<tr ng-repeat="product in products.data">
+				<td>{{product.name}}</td>
+				<td>{{product.description}}</td>
+				<td>{{product.price}}</td>
+				<td><button ng-click="deleteProduct(product)">delete</button>
+                    <button ng-click="editProduct(product)">Edu</button></td>
+			</tr>
+		</table>
+	</div>

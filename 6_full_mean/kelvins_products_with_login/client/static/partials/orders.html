@@ -1,0 +1,17 @@
+<h1>Orders Controller</h1>
+	<div ng-controller="ordersController">
+		<table id="productsTable">
+			<tr>
+				<th>name</th>
+				<th>price</th>
+				<th>qty</th>
+				<th>action</th>
+			</tr>
+			<tr ng-repeat="product in products.data">
+				<td>{{product.name}}</td>
+				<td>{{product.price}}</td>
+				<td>{{product.quantity}}</td>
+				<td><button ng-click="buyProduct(product)">Buy</button></td>
+			</tr>
+		</table>
+	</div>
