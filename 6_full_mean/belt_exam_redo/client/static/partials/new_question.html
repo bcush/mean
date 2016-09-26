@@ -1,0 +1,14 @@
+<!-- This is our login partial -->
+
+<h2>New Question</h2>
+<h5><a href="">Home</a> | <a href="#/new_question">Ask a Question</a></h5>
+  <!--   login fields -->
+
+  <div class="form-group">
+    <label>Question
+    <textarea type="text" class="form-control" ng-model="newQuestion.question"></textarea></label>
+
+    <label>Description (optional)
+    <textarea type="text" class="form-control" ng-model="newQuestion.description"></textarea></label>
+    <button ng-click="">Cancel</button> <button ng-click="">Submit</button>
+  </div>

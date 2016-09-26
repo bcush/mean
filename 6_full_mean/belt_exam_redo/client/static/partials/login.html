@@ -1,0 +1,56 @@
+<!-- This is our login partial -->
+
+  <h2>Big Time Question App</h2>
+
+  <!--   login fields -->
+  <form name="loginForm" ng-submit="login(user)">
+  <!-- username input -->
+  <div class="form-group">
+  <div ng-messages="loginForm.loginFormUsername.$error">
+    <label>Username</label> <span ng-message="minlength">(too short)</span></div>
+    <input type="text" class="form-control" name="loginFormUsername" placeholder="must have at least 3 characters" ng-model="user.username" ng-minlength="3">
+  </div>
+
+  <!-- password input -->
+  <div class="form-group">
+  <div ng-messages="loginForm.loginFormPassword.$error">
+    <label>Password</label> <span ng-message="minlength">(too short)</span></div>
+    <input type="password" class="form-control" name="loginFormPassword" placeholder="must have at least 8 characters" ng-model="user.password" ng-minlength="8">
+  </div>
+
+  <!-- login button -->
+  <button type="submit" class="btn btn-block btn-primary">
+  <span>Login</span>
+  </button>
+
+  </form>
+
+  <hr>
+
+  <!--   register fields -->
+  <form name="registerForm" ng-submit="register(login_user)">
+  <!-- username register input -->
+  <div class="form-group">
+  <div ng-messages="registerForm.registerFormUsername.$error">
+    <label>Username</label> <span ng-message="minlength">(too short)</span></div>
+    <input type="text" class="form-control" name="registerFormUsername" placeholder="must have at least 3 characters" ng-model="login_user.username" ng-minlength="3">
+  </div>
+
+  <!-- password register input -->
+  <div class="form-group">
+  <div ng-messages="registerForm.registerFormPassword.$error">
+    <label>Password</label> <span ng-message="minlength">(too short)</span></div>
+    <input type="password" class="form-control" name="registerFormPassword" placeholder="must have at least 8 characters" ng-model="login_user.password" ng-minlength="8">
+  </div>
+
+    <!-- password register confirm input -->
+  <div class="form-group">
+    <label>Confirm Password</label>
+    <input type="password" class="form-control" ng-model="login_user.pw_confirm">
+  </div>
+
+  <!-- register button -->
+  <button type="submit" class="btn btn-block btn-primary">
+  <span>Register</span>
+  </button>
+  </form>

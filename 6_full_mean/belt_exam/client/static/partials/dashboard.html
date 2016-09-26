@@ -1,0 +1,29 @@
+<div ng-controller="questionsController">
+		<a href="" ng-click="logout()">Logout</a>
+
+		<h1>{{req.session.username}}</h1>
+		<table id="questionsTable" border=1 width=700px>
+
+			<tr>
+				<th>Question</th>
+				<th>Answers</th>
+				<th>Action</th>
+			</tr>
+
+			<tr ng-repeat="question in questions.data">
+				<td>{{question.question}}</td>
+				<td>1 (FAKE NUMBER)</td>
+<!-- 				<td>{{question._user.username}}</td> -->
+				<td><a href="#question/{{question._id}}">Show</a> <a href="#question/{{question._id}}/new_answer">Answer</a></td>
+			</tr>
+		</table>
+
+		<h1>Questions</h1>
+		<form id="createQuestion" ng-submit="addQuestion(newQuestion)">
+			<label>Question: <input type="text" ng-model="newQuestion.question"></label><br>
+			<label>description<input type="text" ng-model="newQuestion.description"></label><br>
+			<label>category<input type="number" ng-model="newQuestion.category"></label><br>
+			<button>Submit Question</button>
+		</form>
+
+	</div>

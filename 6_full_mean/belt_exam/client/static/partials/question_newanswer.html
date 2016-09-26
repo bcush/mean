@@ -1,0 +1,29 @@
+	<div ng-controller="answersController">
+  <a href="#/">Home</a> | <a href="#question/{{question.data._id}}/new_answer">Answer this Question</a> | <a href="" ng-click="logout()">Logout</a>
+  <h1>{{question.data.question}}<h1>
+  <h3>{{question.data.description}}</h3>
+
+<form id="createAnswer" ng-submit="addAnswer(newAnswer)">
+  <label>Your Answer:
+  <textarea ng-model="newAnswer.answer"></textarea></label>
+
+  <label>Supporting details for your answer (optional):
+  <textarea ng-model="newAnswer.description"></textarea></label>
+
+  <input type="hidden" ng-model="newAnswer._question" value="{{question.data._id}}">
+
+  <button>Submit Answer</button>
+
+</form>
+
+	</div>
+
+
+
+
+<!--     <form id="createQuestion" ng-submit="addQuestion(newQuestion)">
+      <label>Question: <input type="text" ng-model="newQuestion.question"></label><br>
+      <label>description<input type="text" ng-model="newQuestion.description"></label><br>
+      <label>category<input type="number" ng-model="newQuestion.category"></label><br>
+      <button>Submit Question</button>
+    </form> -->

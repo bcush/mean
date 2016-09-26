@@ -1,0 +1,16 @@
+	<div ng-controller="questionsController">
+  <a href="#/">Home</a> | <a href="#question/{{question.data._id}}/new_answer">Answer this Question</a> | <a href="" ng-click="logout()">Logout</a>
+  <h1>{{question.data.question}}<h1>
+  <h3>{{question.data.description}}</h3>
+		<table id="questionsTable">
+
+		</table>
+	</div>
+
+
+
+<!-- 	    question: String,
+    description: String,
+    category: Number,
+    upvote: Number,
+    downvote: Number, -->
