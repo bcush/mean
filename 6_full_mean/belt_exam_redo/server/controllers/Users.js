@@ -25,7 +25,7 @@ module.exports = {
 
   // User controller for registering a new user
   // Validations: [form data] password == pw_confirm
-  register: function(req, res) {
+  register: function (req, res) {
     console.log("users.register called");
     console.log(req.body);
     if (req.body.password != req.body.pw_confirm) {
@@ -33,7 +33,7 @@ module.exports = {
       res.sendStatus(400);
     } else {
       var user = new User(req.body);
-      user.save(function(err, user) {
+      user.save(function (err, user) {
         if (err) {
           // HTTP Status 500: Server Error - Internal Server Error
           res.sendStatus(500);
@@ -48,11 +48,26 @@ module.exports = {
     }
   },
 
+  // User controller for checking what user is in session
+  // Returns: if session found, then sending back in JSON
+
+  whoami: function (req, res) {
+    if (req.session.user) {
+      console.log("sending session back");
+      res.json(req.session);
+    } else {
+      console.log('no session to return');
+      res.sendStatus(400);
+    }
+  },
+
   // User controller for logging in user
   // Validations: [form data] password == found user password
-  login: function(req, res) {
+  login: function (req, res) {
     console.log("users.login called");
-    User.findOne({username: req.body.username}).exec(function(err, user) {
+    User.findOne({
+      username: req.body.username
+    }).exec(function (err, user) {
       if (user.password != req.body.password) {
         // HTTP Status 400: Client Error - Bad Request
         res.sendStatus(400);
@@ -64,6 +79,16 @@ module.exports = {
         res.send(user);
       }
     });
+  },
 
+  logout: function (req, res) {
+    if (req.session) {
+      req.session.destroy();
+      console.log('destroyed session');
+      res.status(200).redirect('/');
+    } else {
+      console.log('no session to destroy');
+      res.sendStatus(400).redirect('/');
+    }
   }
 };

@@ -12,12 +12,32 @@ app.factory('QuestionFactory', ['$http', function($http) {
       });
     },
 
+    whoami: function(callback){
+        $http({
+            method:"GET",
+            url:'/whoami'
+        }).then(function(res){
+            whoami = res.data;
+            callback(whoami);
+        });
+    },
+
+    getAll: function(callback){
+        $http({
+            method:"GET",
+            url:'/questions'
+        }).then(function(res){
+            questions = res.data;
+            callback(questions);
+        });
+    },
+
     getOne: function(id, callback) {
       $http({
         method: "GET",
         url: "/questions/" + id,
       }).then(function(res) {
-        question.data = res.data;
+        question = res.data;
         callback(question);
       });
     }

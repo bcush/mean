@@ -3,7 +3,7 @@
 app.controller('usersController', ['$scope', '$location', 'UserFactory', function($scope, $location, UserFactory) {
   $scope.register = function(user) {
     UserFactory.register(user, function() {
-      $location.url('#/questions');
+      $location.url('/questions');
     });
   };
 

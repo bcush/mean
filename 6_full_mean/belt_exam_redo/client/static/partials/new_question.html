@@ -1,7 +1,9 @@
 <!-- This is our login partial -->
 
-<h2>New Question</h2>
-<h5><a href="">Home</a> | <a href="#/new_question">Ask a Question</a></h5>
+<h5><a href="/#questions">Home</a> | <a href="/logout">Logout</a></h5>
+
+<h1>New Question</h1>
+
   <!--   login fields -->
 
   <div class="form-group">
@@ -10,5 +12,6 @@
 
     <label>Description (optional)
     <textarea type="text" class="form-control" ng-model="newQuestion.description"></textarea></label>
-    <button ng-click="">Cancel</button> <button ng-click="">Submit</button>
+    <button ng-click="cancel()">Cancel</button>
+    <button ng-click="ask(newQuestion)">Submit</button>
   </div>

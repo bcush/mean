@@ -19,16 +19,18 @@ var users = require('../controllers/Users.js');
 // web will switch between module.exports and exports. They mean the same thing
 // and can be used interchangeably.
 
-module.exports = function(app) {
+module.exports = function (app) {
 
   // These will be our unprotected routes
   app.post('/register', users.register);
   app.post('/login', users.login);
+  app.get('/logout', users.logout);
 
   // These will be our protected routes
   app.use(userAuth);
+  app.get('/whoami', users.whoami);
   app.post('/questions', questions.ask);
-  app.post('/questions/:id', questions.getOne);
+  app.get('/questions/:id', questions.getOne);
   app.get('/questions', questions.getAll);
 };
 

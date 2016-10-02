@@ -27,11 +27,13 @@ app.config(function($routeProvider, $httpProvider) {
         })
         .when('/question/:id', {
           // Angular route to view question
-          templateUrl: 'partials/question.html'
+          templateUrl: 'partials/question.html',
+          controller: 'getQuestionController'
         })
         .when('/questions', {
           // Angular route to view all questions
-          templateUrl: 'partials/questions.html'
+          templateUrl: 'partials/questions.html',
+          controller: 'questionsController'
         })
         .when('/login', {
           // Angular route to present login fields

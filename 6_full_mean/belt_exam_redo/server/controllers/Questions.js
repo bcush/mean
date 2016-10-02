@@ -25,14 +25,14 @@ module.exports = {
 
   // Question controller for asking a new question
   // Validations:
-  ask: function(req, res) {
+  ask: function (req, res) {
     console.log("questions.ask called");
     if (req.body.question === "") {
       // HTTP Status 400: Client Error - Bad Request
       res.sendStatus(400);
     } else {
       var question = new Question(req.body);
-      question.save(function(err) {
+      question.save(function (err) {
         if (err) {
           // HTTP Status 500: Server Error - Internal Server Error
           res.status(500).send("Question did not save.");
@@ -46,9 +46,11 @@ module.exports = {
 
   // Question controller for find a question
   // Named parameters - :id
-  getOne: function(req, res) {
+  getOne: function (req, res) {
     console.log("questions.getOne called");
-    Question.findOne({_id: req.params.id}).exec(function(err, question) {
+    Question.findOne({
+      _id: req.params.id
+    }).exec(function (err, question) {
       if (err) {
         // HTTP Status 500: Server Error - Internal Server Error
         res.status(500).send(err);
@@ -59,14 +61,14 @@ module.exports = {
     });
   },
 
-  getAll: function(req, res) {
-    console.log("questions.getOne called");
-    Question.find({}).exec(function(err, questions) {
+  getAll: function (req, res) {
+    console.log("questions.getAll called");
+    Question.find({}).exec(function (err, questions) {
       if (err) {
         // HTTP Status 500: Server Error - Internal Server Error
         res.status(500).send(err);
       } else {
-        // Return JSON Object - The Question Found
+        // Return JSON Object - The Questions Found
         res.json(questions);
       }
     });

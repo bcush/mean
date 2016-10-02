@@ -1,0 +1,18 @@
+<!-- This is our answer partial -->
+
+<h5><a href="">Home</a> | <a href="/logout">Logout</a></h5>
+
+<h1> {{question.question}} </h1>
+<h2> {{question.description}} </h2>
+
+  <!--   question fields -->
+
+<form>
+  <label>Your Answer:</label>
+  <textarea ng-model="answer.answer"></textarea>
+
+  <label>Supporting details for your answer (optional)</label>
+
+  <button>Submit</button>
+  <textarea ng-model="answer.details"></textarea>
+</form>

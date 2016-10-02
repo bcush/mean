@@ -1,18 +1,18 @@
 // Require some packages that we will use
-var express    = require('express'),
-    path       = require('path'),
-    bodyParser = require('body-parser'),
-    session    = require('express-session');
+var express = require('express'),
+  path = require('path'),
+  bodyParser = require('body-parser'),
+  session = require('express-session');
 
 // Create variable to contain Session config
 var sessionConfig = {
-  secret: 'CookieMonster',          // Secret name for decoding secret
-  resave: false,                    // Don't resave session if no changes made
-  saveUninitialized: true,          // Don't save session if nothing initialized
-  name: 'myCookie',                 // Set a custom cookie name
+  secret: 'CookieMonster', // Secret name for decoding secret
+  resave: false, // Don't resave session if no changes made
+  saveUninitialized: true, // Don't save session if nothing initialized
+  name: 'myCookie', // Set a custom cookie name
   cookie: {
-    secure: false,                  // This needs to true only with HTTPS
-    httpOnly: false,                // Forces cookies to be used over HTTP
+    secure: false, // This needs to true only with HTTPS
+    httpOnly: false, // Forces cookies to be used over HTTP
     maxAge: 3600000
   }
 };
@@ -24,14 +24,16 @@ var app = express();
 require('./server/config/mongoose.js');
 
 // Configure our Middleware
-  // Pass our sessionConfig into Middleware
-  app.use(session(sessionConfig));
+// Pass our sessionConfig into Middleware
+app.use(session(sessionConfig));
 
-  // Allow our app to parse urlencoded bodies
-  app.use(bodyParser.urlencoded({ extended: true }));
+// Allow our app to parse urlencoded bodies
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
-  // Allow our app to parse JSON
-  app.use(bodyParser.json());
+// Allow our app to parse JSON
+app.use(bodyParser.json());
 
 // Log res.session with every HTTP request/response
 // app.use(function(req, res, next) {
@@ -47,6 +49,6 @@ require('./server/config/routes.js')(app);
 
 // Start our server
 var port = 8000;
-app.listen(port, function() {
+app.listen(port, function () {
   console.log("Listening on port " + port + ".");
 });
